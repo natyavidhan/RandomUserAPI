@@ -7,4 +7,9 @@ faker = Faker()
 def generate_profile(seed=None):
     if seed:
         Faker.seed(seed)
-    return faker.profile()
+    profile = faker.profile()
+    profile['phone'] = faker.phone_number()
+    return profile
+
+def get_root():
+    return faker

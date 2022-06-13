@@ -1,5 +1,5 @@
 from flask import Flask, jsonify, request
-from data import generate_profile
+from data import generate_profile, get_root
 
 __VERSION__ = '0.1.0'
 app = Flask(__name__)
@@ -12,6 +12,17 @@ def index():
 def profile():
     seed = request.args.get('seed')
     return jsonify(generate_profile(seed))
+
+@app.route('/specific')
+def specific():
+    faker = get_root()
+    ret = {}
+    for key in request.args:
+        try:
+            exec(f"ret['{key}'] = faker.{key}()")
+        except:
+            pass
+    return jsonify(ret)
 
 if __name__ == '__main__':
     app.run(debug=True)
