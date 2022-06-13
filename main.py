@@ -11,7 +11,8 @@ def index():
 @app.route('/profile')
 def profile():
     seed = request.args.get('seed')
-    return jsonify(generate_profile(seed))
+    amount = request.args.get('amount') or 1
+    return jsonify(generate_profile(seed, amount))
 
 @app.route('/specific')
 def specific():
