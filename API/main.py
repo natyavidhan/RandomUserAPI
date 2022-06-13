@@ -1,7 +1,7 @@
 from flask import Flask, jsonify, request
 from data import generate_profile, get_root
 
-__VERSION__ = '0.1.0'
+__VERSION__ = '1.0.0'
 app = Flask(__name__)
 
 @app.route('/')
